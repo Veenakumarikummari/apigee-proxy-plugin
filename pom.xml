@@ -31,35 +31,16 @@
 		<target.root.dir>${basedir}/target</target.root.dir>
 		<apigee.deploy.version>1</apigee.deploy.version>
 	</properties>
-	<profiles>
-		<profile>
-			<id>proxy_de</id>
-			<properties>
-				<apigee.profile>proxy_de</apigee.profile>
-				<apigee.env>eval</apigee.env>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.org>esi-apigee-x-394004</apigee.org>
-				<apigee.options>async</apigee.options>
-				<apigee.bearer>${bearer}</apigee.bearer>
-			</properties>
-		</profile>
-		<profile>
-			<!-- Next Generation SaaS and hybrid -->
-			<id>config_de</id>
-			<properties>
-				<apigee.profile>config_de</apigee.profile>
-				<apigee.env>eval</apigee.env>
-				<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
-				<apigee.apiversion>v1</apigee.apiversion>
-				<apigee.org>esi-apigee-x-394004</apigee.org>
-				<apigee.config.dir>${dir}</apigee.config.dir>
-				<apigee.config.options>update</apigee.config.options>
-				<apigee.bearer>${bearer}</apigee.bearer>
-			</properties>
-		</profile>
-	</profiles>
 	<build>
+	<pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>io.apigee.build-tools.enterprise4g</groupId>
+                    <artifactId>apigee-edge-maven-plugin</artifactId>
+                    <version>${apigee.deploy.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
 		<plugins>
 			<!-- copy the full apiproxy folder to target folder -->
 			<plugin>
@@ -90,6 +71,34 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <overwrite>true</overwrite>
+                            <resources>
+                                <resource>
+                                    <!--source -->
+                                    <directory>${project.root.dir}</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>sharedflowbundle/**</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                            <!--target -->
+                            <outputDirectory>${target.root.dir}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 			<plugin>
 				<groupId>io.apigee.build-tools.enterprise4g</groupId>
 				<artifactId>apigee-edge-maven-plugin</artifactId>
