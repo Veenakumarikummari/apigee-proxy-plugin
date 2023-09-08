@@ -77,7 +77,7 @@ jobs:
       - name: mvn deploy proxy xhybrid
         run: mvn apigee-enterprise:deploy -q -Pproxy_de -Dbearer=${{ steps.auth.outputs.access_token }}
 
-    # Maven Deploy Apigee Config
-      - name: mvn deploy config xhybrid
-        run: mvn install -q -Pconfig_de -Dbearer=${{ steps.auth.outputs.access_token }} -Dapigee.config.file=ApigeeConfig/apigee.json -Dapigee.config.options=update
+    # # Maven Deploy Apigee Config
+    #   - name: mvn deploy config xhybrid
+    #     run: mvn install -q -Pconfig_de -Dbearer=${{ steps.auth.outputs.access_token }} -Dapigee.config.file=ApigeeConfig/apigee.json -Dapigee.config.options=update
 
