@@ -23,13 +23,16 @@
 			</releases>
 		</pluginRepository>
 	</pluginRepositories>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<org.slf4j.simpleLogger.defaultLogLevel>info</org.slf4j.simpleLogger.defaultLogLevel>
+		<properties>
+		<main.basedir>${project.basedir}</main.basedir>
+		<apigee.options>override</apigee.options>
+		<apigee.apiversion>v1</apigee.apiversion>
+		<apigee.org>${org}</apigee.org>
+		<apigee.env>${env}</apigee.env>
+		<apigee.hosturl>https://apigee.googleapis.com</apigee.hosturl>
+		<apigee.bearer>${bearer}</apigee.bearer>
 		<project.root.dir>${basedir}</project.root.dir>
 		<target.root.dir>${basedir}/target</target.root.dir>
-		<apigee.deploy.version>1</apigee.deploy.version>
 	</properties>
 	<build>
 	<pluginManagement>
