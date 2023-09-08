@@ -23,12 +23,6 @@ on:
         options:
           - esi-apigee-x-394004
           - NA   
-      deployment-apitype:
-        type: choice
-        description: Api to deploy
-        options:
-          - sharedflow
-          - proxy
 
 #beloe command is deploy the code automatically when release version created and code merged  
 #on:
